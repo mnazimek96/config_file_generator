@@ -21,6 +21,20 @@ def generate_and_process_data(input_file):
     return parameters
 
 
+def generate_param_alloc(input_file):
+    data = pd.read_csv(input_file, sep=";")
+    id = data[["ID"]]
+    sw_define_name = data[["SW_DEFINE_NAME"]]
+    group = data[["GRUPA"]]
+    f = open("output/param_alloc.h", "w+")
+
+    # tu jest do poprawy !!!
+    for i in range(len(sw_define_name)-3):
+        f.write("#define %d %s \n" % ((i + 1), data.iloc[0+i:i, 8:9]))
+    f.close()
+    print(data.iloc[0:len(sw_define_name)-3, 8:9])
+
+
 def save_and_make_backup_csv(file_path, parameters):
 
     files_present = np.os.path.isfile(file_path)
@@ -46,6 +60,7 @@ def generate_parameters():
 
 if __name__ == "__main__":
     generate_parameters()
+    generate_param_alloc("input/parameters_list.csv")
 
 
 
