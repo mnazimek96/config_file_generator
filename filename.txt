@@ -1,0 +1,14 @@
+             SW_DEFINE_NAME     ID
+0          DGN_DEPLOY_SPEED    1.0
+1         DGN_RETRACT_SPEED    2.0
+2    DGN_MIN_DEPLOYMENT_POS    3.0
+3    DGN_MIN_DEPLOYMENT_POS    4.0
+4    DGN_MIN_DEPLOYMENT_POS    5.0
+..                      ...    ...
+123  DGN_MIN_DEPLOYMENT_POS  124.0
+124  DGN_MIN_DEPLOYMENT_POS  125.0
+125                     NaN    NaN
+126                     NaN    NaN
+127                     NaN    NaN
+
+[128 rows x 2 columns]

@@ -3,7 +3,7 @@
  * */
 
 /* CONFIGURATION PARAMTERS */
-#define DUPA						1
+#define DGN_CONF_OPEN_SPEED				1
 #define DGN_CONF_CLOSE_SPEED			2
 #define DGN_CONF_OPEN_TIME				3
 #define DGN_CONF_MAX_CURRENT			4
