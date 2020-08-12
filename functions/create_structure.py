@@ -7,4 +7,3 @@ def create_dirs():
 
     if not os.path.exists("backup"):
         os.makedirs("backup")
-

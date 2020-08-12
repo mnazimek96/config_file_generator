@@ -10,7 +10,7 @@ def crc_calc(file_name):
 
 
 def encrypt(crc):
-    key = Fernet.generate_key() #this is your "password"
+    key = Fernet.generate_key()  # this is your "password"
     cipher_suite = Fernet(key)
     encoded_text = cipher_suite.encrypt(crc)
     # decoded_text = cipher_suite.decrypt(encoded_text)

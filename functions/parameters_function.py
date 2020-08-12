@@ -1,8 +1,8 @@
-import zlib
 import pandas as pd
 import numpy as np
 import shutil
 from functions import crc
+from functions.create_structure import create_dirs
 
 
 def generate_and_process_data(input_file):
@@ -39,6 +39,7 @@ def save_and_make_backup_csv(file_path, parameters):
 
 
 def generate_parameters():
+    create_dirs()
     input_file = "input/parameters_list.csv"
     output_file = "output/parameters.csv"
     data = generate_and_process_data(input_file)

@@ -6,12 +6,12 @@ input_file = "input/parameters_list.csv"
 output_file = "output/defaults.h"
 data = pd.read_csv(input_file, sep=';')
 sw_define_name = data[["SW_DEFINE_NAME"]]
-max = data[["MAX"]]
-min = data[["MIN"]]
-default = data[["DEFAULT"]]
-rw = data[["RW"]]
+max_val = data[["MAX"]]
+min_val = data[["MIN"]]
+default_val = data[["DEFAULT"]]
+rw_val = data[["RW"]]
 config = data[["CONFIG"]]
-id = data[["ID"]]
+_id = data[["ID"]]
 
 # DEF_values
 DEF_values = ["id", "def_val", "range_max", "range_min", "rw"]

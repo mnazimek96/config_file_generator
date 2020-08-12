@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 import shutil
 import math
-import zlib
 from functions import crc
+from functions.create_structure import create_dirs
 
 
 def make_spacing(data, i):
@@ -21,6 +21,7 @@ def make_spacing(data, i):
 
 
 def generate_and_process_data_param_alloc():
+    create_dirs()
     input_file = "input/parameters_list.csv"
     data = pd.read_csv(input_file, sep=";")
     sw_define_name = data[["SW_DEFINE_NAME"]]
@@ -29,26 +30,26 @@ def generate_and_process_data_param_alloc():
     for i in range(len(sw_define_name)-3):
         tab = make_spacing(data, i)
         group = data["GRUPA"].iloc[i]
-        id = data["ID"].iloc[i]
-        if not math.isnan(id):
-            id = int(id)
+        _id = data["ID"].iloc[i]
+        if not math.isnan(_id):
+            _id = int(_id)
         if i == 0:
             f.write("/*\n"
                     " * NO INCLUDE GUARD AS THE FILE IS ONLY INCLUDED IN DIAGNOSIS.H\n"
                     " * */\n\n")
             f.write(f'/* {group} */\n')
-            f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{id}\n')
+            f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{_id}\n')
         elif data["OPIS"].iloc[i] == "CTRL_CRC_PARAM_LIST":
             f.write(f'\n#define {data["SW_DEFINE_NAME"].iloc[i]}\t0x{crc.crc_calc(input_file)}\n')
         else:
             if group == "SPARE":
-                f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{id}\n')
+                f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{_id}\n')
             else:
                 if group != data["GRUPA"].iloc[i-1]:
                     f.write(f'\n/* {group} */\n')
-                    f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{id}\n')
+                    f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{_id}\n')
                 else:
-                    f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{id}\n')
+                    f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{_id}\n')
     f.close()
     return output_file
 
