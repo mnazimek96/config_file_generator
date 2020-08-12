@@ -27,10 +27,10 @@ def make_spacing(data, i):
 
 
 def generate_and_process_data_param_alloc():
-    input_file = "../input/parameters_list.csv"
+    input_file = "input/parameters_list.csv"
     data = pd.read_csv(input_file, sep=";")
     sw_define_name = data[["SW_DEFINE_NAME"]]
-    output_file = "../output/param_alloc.h"
+    output_file = "output/param_alloc.h"
     f = open(output_file, "w+")
     for i in range(len(sw_define_name)-3):
         tab = make_spacing(data, i)
@@ -73,4 +73,4 @@ def save_and_make_backup_h(file):
 
 
 def generate_param_alloc():
-    save_and_make_backup_h("../output/param_alloc.h")
+    save_and_make_backup_h("output/param_alloc.h")
