@@ -51,6 +51,16 @@ def head_add():
     f.close()
 
 
+def parameters_add():
+    f = open(output_file, "a+")
+    for i in range(len(config)):
+        if data["CONFIG"].iloc[i] == 0:
+            param_id = i
+            break
+    f.write(f'#define CONFIG_PARAMETER_SIZE {param_id}\n\n')
+    f.close()
+
+
 def tail_add():
     f = open(output_file, "a+")
     f.write('#else\n'
@@ -61,5 +71,6 @@ def tail_add():
 
 def generate_defaults():
     head_add()
+    parameters_add()
     tail_add()
 

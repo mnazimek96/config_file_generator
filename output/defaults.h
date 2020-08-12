@@ -2,7 +2,7 @@
 *defaults.h
 *
 *
-*generated on: 12/08/2020 14:16:51
+*generated on: 12/08/2020 14:47:00
 *Author: mnazimek
 */
 
@@ -20,6 +20,8 @@ struct DEF_value {
 	int16_t range_min;
 	unit8_t rw;
 };
+
+#define CONFIG_PARAMETER_SIZE 92
 
 #else
 #error "defaults.h file should be included only once!"
