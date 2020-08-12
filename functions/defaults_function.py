@@ -38,9 +38,28 @@ def head_add():
     f.write("""
 /* Two important infos:
 * ->  This header should be included only in configuration.c file
-* ->  Must include configuration.h and GENERAL_CONFIG.h before this one */""")
+* ->  Must include configuration.h and GENERAL_CONFIG.h before this one */\n
+""")
+    f.write("struct DEF_value {\n")
+    for param in DEF_values:
+        # you can add more conditions for different params
+        if param == "id" or param == "rw":
+            f.write(f'\tunit8_t {param};\n')
+        else:
+            f.write(f'\tint16_t {param};\n')
+    f.write("};\n\n")
     f.close()
 
 
 def tail_add():
-    print(0)
+    f = open(output_file, "a+")
+    f.write('#else\n'
+            '#error "defaults.h file should be included only once!"\n'
+            '#endif /* DEFAULTS_H_ */')
+    f.close()
+
+
+def generate_defaults():
+    head_add()
+    tail_add()
+
