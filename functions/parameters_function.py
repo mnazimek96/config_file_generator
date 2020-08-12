@@ -2,15 +2,15 @@ import zlib
 import pandas as pd
 import numpy as np
 import shutil
-from functions import crc_calc
+from functions import crc
 
 
 def generate_and_process_data(input_file):
-    crc = crc_calc.crc_calc(input_file)
+    _crc = crc.crc_calc(input_file)
     data = pd.read_csv(input_file, sep=';')
     data = data[data["CONFIG"] >= 0]
     parameters = data[["GRUPA", "ID", "OPIS", "FORMAT", "MIN", "MAX"]]
-    empty = pd.DataFrame({"GRUPA": [None, None, f'CHECKSUM: {crc}'],
+    empty = pd.DataFrame({"GRUPA": [None, None, f'CHECKSUM: {_crc}'],
                           "ID": [None, None, None],
                           "OPIS": ["", "", ""],
                           "FORMAT": [None, None, None],
