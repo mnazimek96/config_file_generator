@@ -3,13 +3,7 @@ import numpy as np
 import shutil
 import math
 import zlib
-
-
-def crc_calc(file_name):
-    prev = 0
-    for eachLine in open(file_name, "rb"):
-        prev = zlib.crc32(eachLine, prev)
-    return "%X" % (prev & 0xFFFFFFFF)
+from functions import crc_calc
 
 
 def make_spacing(data, i):
@@ -45,7 +39,7 @@ def generate_and_process_data_param_alloc():
             f.write(f'/* {group} */\n')
             f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{id}\n')
         elif data["OPIS"].iloc[i] == "CTRL_CRC_PARAM_LIST":
-            f.write(f'\n#define {data["SW_DEFINE_NAME"].iloc[i]}\t0x{crc_calc(input_file)}\n')
+            f.write(f'\n#define {data["SW_DEFINE_NAME"].iloc[i]}\t0x{crc_calc.crc_calc(input_file)}\n')
         else:
             if group == "SPARE":
                 f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{id}\n')
