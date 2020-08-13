@@ -1,0 +1,10 @@
+File generation by mnazimek. Date: 13/08/2020 13:29:46
+
+---> general info <---
+INPUT CSV file CRC: 0xDB46076C
+INPUT CSV file columns: GRUPA, ID, OPIS, FORMAT, MIN, MAX, DEFAULT, RW, SW_DEFINE_NAME, CONFIG, 
+
+---> parameters.csv generation <---
+OUTPUT CSV file columns: GRUPA, ID, OPIS, FORMAT, MIN, MAX, 
+New file parameters.csv generated! --> dir: ./output/parameters.csv 
+Backup successfully created!

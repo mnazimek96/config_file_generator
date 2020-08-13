@@ -3,24 +3,30 @@ import shutil
 import pandas as pd
 from datetime import datetime
 import getpass
-
+import numpy as np
+from functions import log_gen
+error = 0
 
 input_file = "input/parameters_list.csv"
 output_file = "output/defaults.h"
-data = pd.read_csv(input_file, sep=';')
-sw_define_name = data["SW_DEFINE_NAME"]
-max_val = data["MAX"]
-min_val = data["MIN"]
-default_val = data["DEFAULT"]
-rw_val = data["RW"]
-config = data["CONFIG"]
-_id = data["ID"]
+try:
+    data = pd.read_csv(input_file, sep=';')
+    sw_define_name = data["SW_DEFINE_NAME"]
+    max_val = data["MAX"]
+    min_val = data["MIN"]
+    default_val = data["DEFAULT"]
+    rw_val = data["RW"]
+    config = data["CONFIG"]
+    _id = data["ID"]
 
-# DEF_values
-DEF_values = ["id", "def_val", "range_max", "range_min", "rw"]
+    # DEF_values
+    DEF_values = ["id", "def_val", "range_max", "range_min", "rw"]
 
-# user info
-user = getpass.getuser()
+    # user info
+    user = getpass.getuser()
+except FileNotFoundError:
+    log_gen.write_log("File not found!")
+    error += 1
 
 
 def make_spacing(data_0, i):
@@ -38,16 +44,18 @@ def make_spacing(data_0, i):
 
 
 def save_and_make_backup_h(file):
-    if not pd.np.os.path.isfile(file):
-        gen_file()
-        print('file ' + file + ' successfully created!')
-    else:
-        head, tail = pd.np.os.path.split(file)
-        name, ext = tail.split(".")
-        shutil.copy(file, f'backup/{name}_backup.{ext}')
-        pd.np.os.remove(file)
-        gen_file()
-        print(f'New file {tail} generated! --> dir: ./{file} \nBackup successfully created!')
+    global error
+    if error == 0:
+        if not np.os.path.isfile(file):
+            gen_file()
+            print('file ' + file + ' successfully created!')
+        else:
+            head, tail = np.os.path.split(file)
+            name, ext = tail.split(".")
+            shutil.copy(file, f'backup/{name}_backup.{ext}')
+            np.os.remove(file)
+            gen_file()
+            print(f'New file {tail} generated! --> dir: ./{file} \nBackup successfully created!')
 
 
 def head_add():
