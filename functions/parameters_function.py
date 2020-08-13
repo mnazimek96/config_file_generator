@@ -32,12 +32,12 @@ def generate_and_process_data(input_file):
                               "MIN": [None, None, None],
                               "MAX": ["", "", ""]})
 
-        parameters["ID"] = parameters["ID"].astype(int)
-        parameters["MIN"] = parameters["MIN"].astype(int)
+        parameters.loc[:, 'ID'] = parameters["ID"].astype(int)
+        parameters.loc[:, 'MIN'] = parameters["MIN"].astype(int)
         parameters = parameters.append(empty, ignore_index=True)
         return parameters
     except FileNotFoundError:
-        log_gen.write_log("Error: INPUT file does not exists or it is corrupted!")
+        log_gen.write_log("Error: INPUT file does not exists or it is corrupted![parameters_info]\n")
         error += 1
 
 

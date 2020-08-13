@@ -25,7 +25,7 @@ try:
     # user info
     user = getpass.getuser()
 except FileNotFoundError:
-    log_gen.write_log("File not found!")
+    log_gen.write_log("Error: INPUT file does not exists or it is corrupted!\n")
     error += 1
 
 

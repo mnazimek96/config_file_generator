@@ -26,6 +26,7 @@ def generate_and_process_data_param_alloc():
     global error
     create_dirs()
     try:
+        log_gen.write_log("\n\n---> param_alloc.h generation <---")
         input_file = "input/parameters_list.csv"
         data = pd.read_csv(input_file, sep=";")
         sw_define_name = data[["SW_DEFINE_NAME"]]
@@ -55,26 +56,31 @@ def generate_and_process_data_param_alloc():
                     else:
                         f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{_id}\n')
         f.close()
+        if not np.os.path.isfile(output_file):
+            log_gen.write_log('\nFile ' + output_file + ' successfully created!')
+        else:
+            head, tail = np.os.path.split(output_file)
+            log_gen.write_log(f'\nNew file {tail} generated! --> dir: ./{output_file}')
         return output_file
     except FileNotFoundError:
-        log_gen.write_log("File not exists")
+        log_gen.write_log("Error: INPUT file does not exists or it is corrupted![param_alloc_info]\n")
         error += 1
 
 
 def save_and_make_backup_h(file):
-    if error == 0:
+    try:
         if not np.os.path.isfile(file):
             generate_and_process_data_param_alloc()
-            print('file ' + file + ' successfully created!')
         else:
             head, tail = np.os.path.split(file)
             name, ext = tail.split(".")
             shutil.copy(file, f'backup/{name}_backup.bkp')
             np.os.remove(file)
             generate_and_process_data_param_alloc()
-            print(f'New file {tail} generated! --> dir: ./{file} \nBackup successfully created!')
-    else:
-        pass
+            log_gen.write_log('\nBackup successfully created!')
+    except FileNotFoundError:
+        log_gen.write_log("Error: INPUT file does not exists or it is corrupted!\n")
+        error += 1
 
 
 def generate_param_alloc():
