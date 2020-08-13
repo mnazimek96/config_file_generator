@@ -7,4 +7,5 @@ if __name__ == "__main__":
     generate_parameters()
     generate_param_alloc()
     generate_defaults()
+
     # crc.encrypt(b'0xDB46076C')
