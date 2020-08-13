@@ -98,6 +98,8 @@ def parameters_add():
         if config.iloc[i] == 0:
             param_id = i
             break
+        else:
+            param_id = len(config)
     f.write(f'#define {parameter} {param_id}\n\n')
     f.write(f"const static struct DEF_value configParamsDefaults[{parameter}]=\n"+"{\n")
     for j in range(param_id):

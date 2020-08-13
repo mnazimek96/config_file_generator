@@ -9,17 +9,20 @@ error = 0
 
 
 def make_spacing(data, i):
-    if len(data["SW_DEFINE_NAME"].iloc[i]) > 23:
-        tab = 2 * '\t'
-    elif len(data["SW_DEFINE_NAME"].iloc[i]) > 19:
-        tab = 3 * '\t'
-    elif len(data["SW_DEFINE_NAME"].iloc[i]) >= 18:
-        tab = 4 * '\t'
-    elif len(data["SW_DEFINE_NAME"].iloc[i]) >= 13:
-        tab = 5 * '\t'
+    if not np.isnan(data["ID"].iloc[i]):
+        if len(data["SW_DEFINE_NAME"].iloc[i]) > 23:
+            tab = 2 * '\t'
+        elif len(data["SW_DEFINE_NAME"].iloc[i]) > 19:
+            tab = 3 * '\t'
+        elif len(data["SW_DEFINE_NAME"].iloc[i]) >= 18:
+            tab = 4 * '\t'
+        elif len(data["SW_DEFINE_NAME"].iloc[i]) >= 13:
+            tab = 5 * '\t'
+        else:
+            tab = 6 * '\t'
+        return tab
     else:
-        tab = 6 * '\t'
-    return tab
+        pass
 
 
 def generate_and_process_data_param_alloc():
@@ -32,7 +35,7 @@ def generate_and_process_data_param_alloc():
         sw_define_name = data[["SW_DEFINE_NAME"]]
         output_file = "output/param_alloc.h"
         f = open(output_file, "w+")
-        for i in range(len(sw_define_name)-3):
+        for i in range(len(sw_define_name)):
             tab = make_spacing(data, i)
             group = data["GRUPA"].iloc[i]
             _id = data["ID"].iloc[i]

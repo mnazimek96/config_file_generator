@@ -157,3 +157,12 @@
 #define DGN_MIN_DEPLOYMENT_POS			124
 
 #define CTRL_CRC_PARAM_LIST	0xDB46076C
+
+/* nan */
+#define nanNonenan
+
+/* nan */
+#define nanNonenan
+
+/* CHECKSUM: 514F4942414255564652573079396F614945325848413D3D */
+#define nanNonenan
