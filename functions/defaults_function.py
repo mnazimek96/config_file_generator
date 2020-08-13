@@ -52,7 +52,7 @@ def save_and_make_backup_h(file):
         else:
             head, tail = np.os.path.split(file)
             name, ext = tail.split(".")
-            shutil.copy(file, f'backup/{name}_backup.{ext}')
+            shutil.copy(file, f'backup/{name}_backup.bkp')
             np.os.remove(file)
             gen_file()
             print(f'New file {tail} generated! --> dir: ./{file} \nBackup successfully created!')

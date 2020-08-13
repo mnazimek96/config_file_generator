@@ -13,7 +13,7 @@ def make_spacing(data, i):
         tab = 2 * '\t'
     elif len(data["SW_DEFINE_NAME"].iloc[i]) > 19:
         tab = 3 * '\t'
-    elif len(data["SW_DEFINE_NAME"].iloc[i]) > 18:
+    elif len(data["SW_DEFINE_NAME"].iloc[i]) >= 18:
         tab = 4 * '\t'
     elif len(data["SW_DEFINE_NAME"].iloc[i]) >= 13:
         tab = 5 * '\t'
@@ -69,7 +69,7 @@ def save_and_make_backup_h(file):
         else:
             head, tail = np.os.path.split(file)
             name, ext = tail.split(".")
-            shutil.copy(file, f'backup/{name}_backup.{ext}')
+            shutil.copy(file, f'backup/{name}_backup.bkp')
             np.os.remove(file)
             generate_and_process_data_param_alloc()
             print(f'New file {tail} generated! --> dir: ./{file} \nBackup successfully created!')
