@@ -49,7 +49,7 @@ def save_and_make_backup_h(file):
         log_gen.write_log("\n\n---> defaults.h generation <---")
         if not np.os.path.isfile(file):
             gen_file()
-            log_gen.write_log('File ' + file + ' successfully created!')
+            log_gen.write_log('\nFile ' + file + ' successfully created!')
         else:
             head, tail = np.os.path.split(file)
             name, ext = tail.split(".")
@@ -57,6 +57,10 @@ def save_and_make_backup_h(file):
             np.os.remove(file)
             gen_file()
             log_gen.write_log(f'\nNew file {tail} generated! --> dir: ./{file} \nBackup successfully created!')
+    else:
+        log_gen.write_log("\nError: INPUT file does not exists or it is corrupted![defaults_info]\n"
+                          "!!! place parameters_list.csv to /input !!!")
+        error += 1
 
 
 def head_add():
@@ -126,15 +130,11 @@ def tail_add():
 
 
 def gen_file():
-    global error
-    try:
-        head_add()
-        parameters_add()
-        tail_add()
-    except FileNotFoundError:
-        log_gen.write_log("Error: INPUT file does not exists or it is corrupted![defaults_generation]")
-        error += 1
+    head_add()
+    parameters_add()
+    tail_add()
 
 
 def generate_defaults():
     save_and_make_backup_h("output/defaults.h")
+

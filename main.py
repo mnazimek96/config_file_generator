@@ -3,10 +3,11 @@ from functions.parameters_function import generate_parameters
 from functions.defaults_function import generate_defaults
 from functions import log_gen
 from functions.create_structure import create_dirs
+from functions.parameters_function import error
 
 
 if __name__ == "__main__":
-    create_dirs()
+    # create_dirs()
     log_gen.start_log()
     generate_parameters()
     generate_param_alloc()

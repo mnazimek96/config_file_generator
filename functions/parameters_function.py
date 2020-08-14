@@ -37,7 +37,8 @@ def generate_and_process_data(input_file):
         parameters = parameters.append(empty, ignore_index=True)
         return parameters
     except FileNotFoundError:
-        log_gen.write_log("Error: INPUT file does not exists or it is corrupted![parameters_info]\n")
+        log_gen.write_log("Error: INPUT file does not exists or wrong dir![parameters_info]\n"
+                          "!!! place parameters_list.csv to /input !!!")
         error += 1
 
 
@@ -46,7 +47,7 @@ def save_and_make_backup_csv(file_path, parameters):
         files_present = np.os.path.isfile(file_path)
         if not files_present:
             parameters.to_csv(file_path, sep=";", index=False)
-            log_gen.write_log('\nfile ' + file_path + ' successfully created!')
+            log_gen.write_log('\nFile ' + file_path + ' successfully created!')
         else:
             head, tail = np.os.path.split(file_path)
             name, ext = tail.split(".")

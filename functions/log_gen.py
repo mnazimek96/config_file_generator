@@ -1,5 +1,8 @@
+from functions.create_structure import create_dirs
+
 log = 0
 path = "log/execution.log"
+create_dirs()
 
 
 def start_log():

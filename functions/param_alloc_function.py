@@ -29,9 +29,9 @@ def generate_and_process_data_param_alloc():
     global error
     create_dirs()
     try:
-        log_gen.write_log("\n\n---> param_alloc.h generation <---")
         input_file = "input/parameters_list.csv"
         data = pd.read_csv(input_file, sep=";")
+        log_gen.write_log("\n\n---> param_alloc.h generation <---")
         sw_define_name = data[["SW_DEFINE_NAME"]]
         output_file = "output/param_alloc.h"
         f = open(output_file, "w+")
@@ -59,29 +59,28 @@ def generate_and_process_data_param_alloc():
                     else:
                         f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{_id}\n')
         f.close()
-        if not np.os.path.isfile(output_file):
+        if np.os.path.isfile(output_file):
             log_gen.write_log('\nFile ' + output_file + ' successfully created!')
         else:
             head, tail = np.os.path.split(output_file)
             log_gen.write_log(f'\nNew file {tail} generated! --> dir: ./{output_file}')
         return output_file
     except FileNotFoundError:
-        log_gen.write_log("Error: INPUT file does not exists or it is corrupted![param_alloc_info]\n")
+        log_gen.write_log("\nError: INPUT file does not exists or wrong dir![param_alloc_info]\n"
+                          "!!! place parameters_list.csv to /input !!!")
         error += 1
 
 
 def save_and_make_backup_h(file):
-
-        if not np.os.path.isfile(file):
-            generate_and_process_data_param_alloc()
-        else:
-            head, tail = np.os.path.split(file)
-            name, ext = tail.split(".")
-            shutil.copy(file, f'backup/{name}_backup.bkp')
-            np.os.remove(file)
-            generate_and_process_data_param_alloc()
-            log_gen.write_log('\nBackup successfully created!')
-
+    if not np.os.path.isfile(file):
+        generate_and_process_data_param_alloc()
+    else:
+        head, tail = np.os.path.split(file)
+        name, ext = tail.split(".")
+        shutil.copy(file, f'backup/{name}_backup.bkp')
+        np.os.remove(file)
+        generate_and_process_data_param_alloc()
+        log_gen.write_log('\nBackup successfully created!')
 
 
 def generate_param_alloc():
