@@ -1,15 +1,18 @@
-File generation by mnazimek. Date: 14/08/2020 08:54:48
+File generation by mnazimek. Date: 14/08/2020 14:29:38
 
 ---> general info <---
-INPUT CSV file CRC: 0xDB46076C
-INPUT CSV file columns: GRUPA, ID, OPIS, FORMAT, MIN, MAX, DEFAULT, RW, SW_DEFINE_NAME, CONFIG, 
+INPUT CSV file CRC: 0x58CED029
+INPUT CSV file columns: GRUPA, ID, OPIS, FORMAT, MIN, MAX, DEFAULT, RW, SW_DEFINE_NAME, CONFIG, TRANSFER, 
 
 ---> parameters.csv generation <---
 OUTPUT CSV file columns: GRUPA, ID, OPIS, FORMAT, MIN, MAX, 
-File output/parameters.csv successfully created!
+New file parameters.csv generated! --> dir: ./output/parameters.csv 
+Backup successfully created!
 
 ---> param_alloc.h generation <---
 File output/param_alloc.h successfully created!
+Backup successfully created!
 
 ---> defaults.h generation <---
-File output/defaults.h successfully created!
+New file defaults.h generated! --> dir: ./output/defaults.h 
+Backup successfully created!
