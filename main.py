@@ -3,7 +3,6 @@ from functions.parameters_function import generate_parameters
 from functions.defaults_function import generate_defaults
 from functions import log_gen
 from functions.create_structure import create_dirs
-import numpy as np
 
 
 if __name__ == "__main__":

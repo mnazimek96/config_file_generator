@@ -71,7 +71,7 @@ def generate_and_process_data_param_alloc():
 
 
 def save_and_make_backup_h(file):
-    try:
+
         if not np.os.path.isfile(file):
             generate_and_process_data_param_alloc()
         else:
@@ -81,9 +81,7 @@ def save_and_make_backup_h(file):
             np.os.remove(file)
             generate_and_process_data_param_alloc()
             log_gen.write_log('\nBackup successfully created!')
-    except FileNotFoundError:
-        log_gen.write_log("Error: INPUT file does not exists or it is corrupted!\n")
-        error += 1
+
 
 
 def generate_param_alloc():

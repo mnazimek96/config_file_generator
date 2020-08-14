@@ -46,16 +46,17 @@ def make_spacing(data_0, i):
 def save_and_make_backup_h(file):
     global error
     if error == 0:
+        log_gen.write_log("\n\n---> defaults.h generation <---")
         if not np.os.path.isfile(file):
             gen_file()
-            print('file ' + file + ' successfully created!')
+            log_gen.write_log('File ' + file + ' successfully created!')
         else:
             head, tail = np.os.path.split(file)
             name, ext = tail.split(".")
             shutil.copy(file, f'backup/{name}_backup.bkp')
             np.os.remove(file)
             gen_file()
-            print(f'New file {tail} generated! --> dir: ./{file} \nBackup successfully created!')
+            log_gen.write_log(f'\nNew file {tail} generated! --> dir: ./{file} \nBackup successfully created!')
 
 
 def head_add():
@@ -125,9 +126,14 @@ def tail_add():
 
 
 def gen_file():
-    head_add()
-    parameters_add()
-    tail_add()
+    global error
+    try:
+        head_add()
+        parameters_add()
+        tail_add()
+    except FileNotFoundError:
+        log_gen.write_log("Error: INPUT file does not exists or it is corrupted![defaults_generation]")
+        error += 1
 
 
 def generate_defaults():

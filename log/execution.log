@@ -1,4 +1,4 @@
-File generation by mnazimek. Date: 13/08/2020 14:57:30
+File generation by mnazimek. Date: 14/08/2020 07:47:50
 
 ---> general info <---
 INPUT CSV file CRC: 0xDB46076C
@@ -11,4 +11,8 @@ Backup successfully created!
 
 ---> param_alloc.h generation <---
 New file param_alloc.h generated! --> dir: ./output/param_alloc.h
+Backup successfully created!
+
+---> defaults.h generation <---
+New file defaults.h generated! --> dir: ./output/defaults.h 
 Backup successfully created!
