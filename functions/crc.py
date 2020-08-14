@@ -1,4 +1,5 @@
 import zlib
+import pyaes, pbkdf2, binascii, os, secrets
 from cryptography.fernet import Fernet
 
 
@@ -10,8 +11,13 @@ def crc_calc(file_name):
 
 
 def encrypt(crc):
-    key = Fernet.generate_key()  # this is your "password"
-    cipher_suite = Fernet(key)
-    encoded_text = cipher_suite.encrypt(crc)
-    # decoded_text = cipher_suite.decrypt(encoded_text)
-    print(encoded_text)
+    password = "letmein"
+    passwordSalt = os.urandom(16)
+    key = pbkdf2.PBKDF2(password, passwordSalt).read(16)
+    print('AES encryption key:', binascii.hexlify(key))
+
+    iv = secrets.randbits(128)
+    plaintext = "Text for encryption"
+    aes = pyaes.AESModeOfOperationCTR(key, pyaes.Counter(iv))
+    ciphertext = aes.encrypt(plaintext)
+    print('Encrypted:', binascii.hexlify(ciphertext))
