@@ -7,16 +7,17 @@ from functions.crc import encrypt
 from functions.create_structure import create_dirs
 from functions.parameters_function import error
 import pandas as pd
+from functions.crc import crc_calc, encrypt
 
 
 if __name__ == "__main__":
-    # create_dirs()
     log_gen.start_log()
     generate_parameters()
     generate_param_alloc()
     generate_defaults()
     generate_config()
     # test
-    encrypt("0x58CED029")
-    # crc.encrypt(b'0xDB46076C')
+    crc = crc_calc("input/parameters_list.csv")
+    encrypt(crc)
     # 514F4942414255564652573079396F614945325848413D3D
+    # 21f18fa13ed51a19b34853cf77f5c1247f7a25

@@ -48,7 +48,7 @@ def generate_and_process_data_param_alloc():
                 f.write(f'/* {group} */\n')
                 f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{_id}\n')
             elif data["OPIS"].iloc[i] == "CTRL_CRC_PARAM_LIST":
-                f.write(f'\n#define {data["SW_DEFINE_NAME"].iloc[i]}\t0x{crc.crc_calc(input_file)}\n')
+                f.write(f'\n#define {data["SW_DEFINE_NAME"].iloc[i]}\t{crc.crc_calc(input_file)}\n')
             else:
                 if group == "SPARE":
                     f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{_id}\n')

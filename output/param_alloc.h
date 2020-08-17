@@ -156,7 +156,7 @@
 #define DGN_MIN_DEPLOYMENT_POS			123
 #define DGN_MIN_DEPLOYMENT_POS			124
 
-#define CTRL_CRC_PARAM_LIST	0x58CED029
+#define CTRL_CRC_PARAM_LIST	0x58ced029
 
 /* nan */
 #define nanNonenan
