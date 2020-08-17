@@ -1,4 +1,4 @@
-This script is written to generate configuration file:
+This script is written to generate configuration files:
 1. parameters.csv
 2. param_alloc.h
 3. defaults.h
