@@ -5,8 +5,8 @@ This script is written to generate configuration files:
 4. config.ini
 
 First of all make sure that your INPUT data is in input folder and that it is named parameters_list.csv.
-Than make sure that function directory is in the same directory as input folder.
-Last but not least install requirements file:
+Than make sure that functions directory is in the same directory as input folder.
+Last but not least install requirements:
 -> enter command prompt
 -> navigate to folder with main.py
 -> enter command: pip install -r requirements.txt
