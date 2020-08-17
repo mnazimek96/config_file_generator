@@ -25,7 +25,7 @@ def generate_and_process_data(input_file):
         log_gen.write_log("\nOUTPUT CSV file columns: ")
         for col in parameters.columns:
             log_gen.write_log(f'{col}, ')
-            
+
         empty = pd.DataFrame({"GRUPA": [None, None, f'CHECKSUM: {_crc}'],
                               "ID": [None, None, None],
                               "OPIS": ["", "", ""],
