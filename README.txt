@@ -11,4 +11,6 @@ Last but not least install requirements:
 -> navigate to folder with main.py
 -> enter command: pip install -r requirements.txt
 
+INPUT file must have columns: GRUPA, ID, OPIS, FORMAT, MIN, MAX, DEFAULT, RW, SW_DEFINE_NAME, CONFIG, TRANSFER
+
 To generate files type to cmd: python main.py
