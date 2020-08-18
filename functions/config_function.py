@@ -2,7 +2,7 @@ import pandas as pd
 from functions.log_gen import write_log
 
 input_file = "input/parameters_list.csv"
-output_file = "config/config.ini"
+output_file = "output/config/config.ini"
 try:
     data = pd.read_csv(input_file, sep=";")
     # ALL CONFIG VALUES ==========================================

@@ -52,7 +52,7 @@ def save_and_make_backup_csv(file_path, parameters):
         else:
             head, tail = np.os.path.split(file_path)
             name, ext = tail.split(".")
-            shutil.copy(file_path, f'backup/{name}_backup.bkp')
+            shutil.copy(file_path, f'output/backup/{name}_backup.bkp')
             np.os.remove(file_path)
             parameters.to_csv(file_path, sep=";", index=False)
             log_gen.write_log(f'\nNew file {tail} generated! --> dir: ./{file_path} \nBackup successfully created!')

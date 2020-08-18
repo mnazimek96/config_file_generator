@@ -50,14 +50,20 @@ def generate_and_process_data_param_alloc():
             elif data["OPIS"].iloc[i] == "CTRL_CRC_PARAM_LIST":
                 f.write(f'\n#define {data["SW_DEFINE_NAME"].iloc[i]}\t{crc.crc_calc(input_file)}\n')
             else:
+
                 if group == "SPARE":
                     f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{_id}\n')
+                elif group == "FEATURE":
+                    l += 1
+                    f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}({data["SW_DEFINE_NAME"].iloc[i-l]} + {l})\n')
                 else:
                     if group != data["GRUPA"].iloc[i-1]:
+                        l = 0
                         f.write(f'\n/* {group} */\n')
                         f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{_id}\n')
                     else:
                         f.write(f'#define {data["SW_DEFINE_NAME"].iloc[i]}{tab}{_id}\n')
+
         f.close()
         if np.os.path.isfile(output_file):
             log_gen.write_log('\nFile ' + output_file + ' successfully created!')
@@ -77,7 +83,7 @@ def save_and_make_backup_h(file):
     else:
         head, tail = np.os.path.split(file)
         name, ext = tail.split(".")
-        shutil.copy(file, f'backup/{name}_backup.bkp')
+        shutil.copy(file, f'output/backup/{name}_backup.bkp')
         np.os.remove(file)
         generate_and_process_data_param_alloc()
         log_gen.write_log('\nBackup successfully created!')

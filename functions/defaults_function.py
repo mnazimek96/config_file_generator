@@ -1,5 +1,4 @@
 import shutil
-
 import pandas as pd
 from datetime import datetime
 import getpass
@@ -53,13 +52,12 @@ def save_and_make_backup_h(file):
         else:
             head, tail = np.os.path.split(file)
             name, ext = tail.split(".")
-            shutil.copy(file, f'backup/{name}_backup.bkp')
+            shutil.copy(file, f'output/backup/{name}_backup.bkp')
             np.os.remove(file)
             gen_file()
             log_gen.write_log(f'\nNew file {tail} generated! --> dir: ./{file} \nBackup successfully created!')
     else:
-        log_gen.write_log("\nError: INPUT file does not exists or it is corrupted![defaults_info]\n"
-                          "!!! place parameters_list.csv to /input !!!")
+        log_gen.write_log("Backup problem")
         error += 1
 
 

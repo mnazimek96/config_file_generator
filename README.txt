@@ -14,3 +14,5 @@ Last but not least install requirements:
 INPUT file must have columns: GRUPA, ID, OPIS, FORMAT, MIN, MAX, DEFAULT, RW, SW_DEFINE_NAME, CONFIG, TRANSFER
 
 To generate files type to cmd: python main.py
+
+If you want brand NEW input data delete completely output directory.
