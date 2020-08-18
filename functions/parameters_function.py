@@ -61,7 +61,6 @@ def save_and_make_backup_csv(file_path, parameters):
 
 
 def generate_parameters():
-
     create_dirs()
     input_file = "input/parameters_list.csv"
     output_file = "output/parameters.csv"

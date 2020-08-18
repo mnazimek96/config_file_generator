@@ -1,12 +1,12 @@
 from functions.param_alloc_function import generate_param_alloc
 from functions.parameters_function import generate_parameters
 from functions.defaults_function import generate_defaults
-from functions import log_gen
 from functions.config_function import generate_config
+from functions import log_gen
 from functions.crc import crc_calc, encrypt
 
 
-# After running read README.txt
+# Before running read README.txt
 if __name__ == "__main__":
     log_gen.start_log()
     generate_parameters()
