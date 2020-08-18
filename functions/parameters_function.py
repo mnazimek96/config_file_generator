@@ -13,7 +13,7 @@ def generate_and_process_data(input_file):
     log_gen.write_log("---> general info <---\n")
     try:
         _crc = crc.crc_calc(input_file)
-        log_gen.write_log(f"INPUT CSV file CRC: 0x{_crc}\n")
+        log_gen.write_log(f"INPUT CSV file CRC: {_crc}\n")
         data = pd.read_csv(input_file, sep=';')
         log_gen.write_log("INPUT CSV file columns: ")
         for col in data.columns:
